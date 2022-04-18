@@ -1,0 +1,10 @@
+{% extends 'layouts/app.html' %}
+{% block section %}
+    <h1>User Profile</h1>
+    <p>{{ user.username }}</p>
+    <p>{{ user.email }}</p>
+    <p>{{ user.first_name }}</p>
+    <p>{{ user.last_name }}</p>
+    <a href="#">Edit Profile</a>
+    <a href="{% url 'tasks:index' %}">Go To Task List</a>
+{% endblock %}

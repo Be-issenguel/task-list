@@ -15,7 +15,7 @@ class CreateAccountView(View):
         ctx = {
             'form': UserCreationForm(),
         }
-        return render(request, 'frontend/accounts-new.html', context=ctx)
+        return render(request, 'registration/new.html', context=ctx)
 
 
 def register_user(request):
@@ -29,9 +29,14 @@ def register_user(request):
                 'form': UserCreationForm(),
                 'errors': form.errors,
             }
-            return render(request, 'frontend/accounts-new.html', context=ctx)
+            return render(request, 'registration/new.html', context=ctx)
     else:
         ctx = {
             'form': UserCreationForm(),
         }
-        return render(request, 'frontend/accounts-new.html', context=ctx)
+        return render(request, 'registration/new.html', context=ctx)
+
+
+class ProfileView(View):
+    def get(self, request):
+        return render(request, 'registration/profile.html')

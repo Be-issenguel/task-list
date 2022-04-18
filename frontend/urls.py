@@ -9,5 +9,6 @@ urlpatterns = [
     path('accounts/new/', views.CreateAccountView.as_view(), name='new-account'),
     path('accounts/create/', views.register_user, name='create-account'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html',
-                                                         extra_context={'form': AuthenticationForm()}), name='login')
+                                                         extra_context={'form': AuthenticationForm()}), name='login'),
+    path('accounts/profile/', views.ProfileView.as_view(), name='profile'),
 ]
