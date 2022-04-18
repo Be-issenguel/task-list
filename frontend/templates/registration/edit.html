@@ -1,0 +1,8 @@
+{% extends 'layouts/app.html' %}
+{% block section %}
+    <form action="{% url 'tasks:update-profile' id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input  type="submit" value="Update">
+    </form>
+{% endblock %}

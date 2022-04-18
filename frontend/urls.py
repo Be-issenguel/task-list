@@ -11,4 +11,6 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html',
                                                          extra_context={'form': AuthenticationForm()}), name='login'),
     path('accounts/profile/', views.ProfileView.as_view(), name='profile'),
+    path('<int:id>/accounts/edit/', views.EditProfileView.as_view(), name='edit-profile'),
+    path('<int:id>/accounts/update', views.update_profile, name='update-profile'),
 ]

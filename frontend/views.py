@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
+from .forms import UserForm
+from django.contrib.auth.models import User
 
 
 # Tasks views.
@@ -40,3 +42,36 @@ def register_user(request):
 class ProfileView(View):
     def get(self, request):
         return render(request, 'registration/profile.html')
+
+
+class EditProfileView(View):
+    def get(self, request, id):
+        user = get_object_or_404(User, pk=id)
+        ctx = {
+            'form': UserForm(instance=user),
+            'id': id,
+        }
+        return render(request, 'registration/edit.html', context=ctx)
+
+
+def update_profile(request, id):
+    user = get_object_or_404(User, pk=id)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/profile/')
+        else:
+            ctx = {
+                'form': form,
+                'id': id,
+            }
+            return render(request, 'registration/edit.html', context=ctx)
+    else:
+        ctx = {
+            'form': UserForm(instance=user),
+            'id': id,
+        }
+        return render(request, 'registration/edit.html', context=ctx)
+
+

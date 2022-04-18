@@ -5,6 +5,6 @@
     <p>{{ user.email }}</p>
     <p>{{ user.first_name }}</p>
     <p>{{ user.last_name }}</p>
-    <a href="#">Edit Profile</a>
+    <a href="{% url 'tasks:edit-profile' user.id %}">Edit Profile</a>
     <a href="{% url 'tasks:index' %}">Go To Task List</a>
 {% endblock %}
