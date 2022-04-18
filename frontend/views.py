@@ -3,12 +3,16 @@ from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
 from django.contrib.auth.models import User
+from apps.tasks.models import Task
 
 
 # Tasks views.
 class IndexView(View):
     def get(self, request):
-        return render(request, 'frontend/index.html')
+        ctx = {
+            'tasks': Task.objects.all()
+        }
+        return render(request, 'frontend/index.html', context=ctx)
 
 
 # Accounts views

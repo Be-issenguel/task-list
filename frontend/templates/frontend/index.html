@@ -1,4 +1,32 @@
 {% extends 'layouts/app.html' %}
 {% block section %}
-    <h1>Fist Title</h1>
+    <h1>Task List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Limit Date</th>
+                <th>Priority</th>
+                <th>Is Finished</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.limit_date }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>{{ task.is_fished }}</td>
+                    <td>
+                        <a href="#">Edit</a>
+                        <a href="#">Attachments</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
