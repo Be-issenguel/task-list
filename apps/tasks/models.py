@@ -8,7 +8,7 @@ class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='task name')
     description = models.TextField(verbose_name='task description')
-    limit_date = models.DateField(verbose_name='task limit date'),
+    limit_date = models.DateField(verbose_name='task limit date')
     priority = models.IntegerField(default=1, verbose_name='task priority')
     is_finished = models.BooleanField(default=False, verbose_name='task is finished')
 

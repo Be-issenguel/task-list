@@ -1,6 +1,7 @@
 {% extends 'layouts/app.html' %}
 {% block section %}
     <h1>Task List</h1>
+    <a href="{% url 'tasks:new-task' %}">New Task</a>
     <table border="1">
         <thead>
             <tr>

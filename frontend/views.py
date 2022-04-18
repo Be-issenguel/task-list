@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserForm
+from .forms import UserForm, TaskForm
 from django.contrib.auth.models import User
 from apps.tasks.models import Task
 
@@ -79,3 +79,9 @@ def update_profile(request, id):
         return render(request, 'registration/edit.html', context=ctx)
 
 
+class NewTaskView(View):
+    def get(self, request):
+        ctx = {
+            'form': TaskForm()
+        }
+        return render(request, 'frontend/new-task.html', context=ctx)
