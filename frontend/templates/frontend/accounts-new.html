@@ -1,0 +1,11 @@
+{% extends 'layouts/app.html' %}
+{% block section %}
+    <form action="{% url 'tasks:create-account' %}" method="post">
+        {% csrf_token %}
+        <h2>Registration Form </h2>
+        <span>{{ errors.username }}</span>
+        <span>{{ errors.password2 }}</span>
+        {{ form }}
+        <input type="submit" value="Register">
+    </form>
+{% endblock %}
