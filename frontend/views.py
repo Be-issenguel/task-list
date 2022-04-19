@@ -108,3 +108,34 @@ def store_task(request):
             'form': TaskForm()
         }
         return render(request, 'frontend/new-task.html', context=ctx)
+
+
+class EditTaskView(View):
+    def get(self, request, id):
+        task = get_object_or_404(Task, pk=id)
+        ctx = {
+            'form': TaskForm(instance=task),
+            'id': task.id,
+        }
+        return render(request, 'frontend/edit-task.html', context=ctx)
+
+
+def update_task(request, id):
+    task = get_object_or_404(Task, pk=id)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            ctx = {
+                'form': form,
+                'errors': form.errors,
+            }
+            return render(request, 'frontend/edit-task.html', context=ctx)
+    else:
+        ctx = {
+            'form': TaskForm(instance=task),
+            'id': task.id,
+        }
+        return render(request, 'frontend/edit-task.html', context=ctx)
