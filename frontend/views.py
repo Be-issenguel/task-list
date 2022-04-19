@@ -185,3 +185,10 @@ def store_attachment(request, id):
             'id': id
         }
         return render(request, 'frontend/attachments.html', context=ctx)
+
+
+def delete_attachment(request, id):
+    attachment = Attachment.objects.filter(pk=id).get()
+    task_id = attachment.task_id
+    attachment.delete()
+    return redirect(f'/{task_id}/tasks/attachments')

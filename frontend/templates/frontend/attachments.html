@@ -17,7 +17,7 @@
                     <td>{{ attachment.file }}</td>
                     <td>
                         <a href="#">Edit</a>
-                        <a href="#">Delete</a>
+                        <a href="{% url 'tasks:delete-attachment' attachment.id %}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}

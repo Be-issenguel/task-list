@@ -20,6 +20,7 @@ urlpatterns = [
     path('<int:id>/tasks/update/', views.update_task, name='update-task'),
     path('<int:id>/tasks/delete/', views.delete_task, name='delete-task'),
     path('<int:id>/tasks/attachments/', views.IndexAttachmentView.as_view(), name='attachments'),
-    path('<int:id>/tasks/attachments/new', views.NewAttachmentView.as_view(), name='new-attachment'),
-    path('<int:id>/tasks/attachments/store', views.store_attachment, name='store-attachment'),
+    path('<int:id>/tasks/attachments/new/', views.NewAttachmentView.as_view(), name='new-attachment'),
+    path('<int:id>/tasks/attachments/store/', views.store_attachment, name='store-attachment'),
+    path('<int:id>/tasks/attachments/delete/', views.delete_attachment, name='delete-attachment'),
 ]
