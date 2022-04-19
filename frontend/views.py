@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserForm, TaskForm
+from .forms import UserForm, TaskForm, AttachmentForm
 from django.contrib.auth.models import User
 from apps.tasks.models import Task, Attachment
 
@@ -150,6 +150,38 @@ def delete_task(request, id):
 class IndexAttachmentView(View):
     def get(self, request, id):
         ctx = {
-            'attachments': Attachment.objects.filter(task__id=id)
+            'attachments': Attachment.objects.filter(task__id=id),
+            'id': id
+        }
+        return render(request, 'frontend/attachments.html', context=ctx)
+
+
+class NewAttachmentView(View):
+    def get(self, request, id):
+        ctx = {
+            'form': AttachmentForm,
+            'id': id,
+        }
+        return render(request, 'frontend/new-attachment.html', context=ctx)
+
+
+def store_attachment(request, id):
+    if request.method == 'POST':
+        form = AttachmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            attachment = form.save(commit=False)
+            attachment.task_id = id
+            attachment.save()
+            return redirect(f'/{id}/tasks/attachments/')
+        else:
+            ctx = {
+                'form': AttachmentForm,
+                'id': id,
+            }
+            return render(request, 'frontend/new-attachment.html', context=ctx)
+    else:
+        ctx = {
+            'attachments': Attachment.objects.filter(task__id=id),
+            'id': id
         }
         return render(request, 'frontend/attachments.html', context=ctx)

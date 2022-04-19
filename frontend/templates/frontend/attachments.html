@@ -1,7 +1,7 @@
 {% extends 'layouts/app.html' %}
 {% block section %}
     <h1>Attachment List</h1>
-    <a href="">New Attachment</a>
+    <a href="{% url 'tasks:new-attachment' id %}">New Attachment</a>
     <table border="1">
         <thead>
             <tr>
