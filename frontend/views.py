@@ -4,7 +4,7 @@ from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm, TaskForm
 from django.contrib.auth.models import User
-from apps.tasks.models import Task
+from apps.tasks.models import Task, Attachment
 
 
 # Tasks views.
@@ -145,3 +145,11 @@ def update_task(request, id):
 def delete_task(request, id):
     Task.objects.get(pk=id).delete()
     return redirect('/')
+
+
+class IndexAttachmentView(View):
+    def get(self, request, id):
+        ctx = {
+            'attachments': Attachment.objects.filter(task__id=id)
+        }
+        return render(request, 'frontend/attachments.html', context=ctx)

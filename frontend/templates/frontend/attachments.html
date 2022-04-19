@@ -1,0 +1,26 @@
+{% extends 'layouts/app.html' %}
+{% block section %}
+    <h1>Attachment List</h1>
+    <a href="">New Attachment</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Path</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attachment in attachments %}
+                <tr>
+                    <td>{{ attachment.name }}</td>
+                    <td>{{ attachment.file }}</td>
+                    <td>
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

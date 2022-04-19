@@ -27,7 +27,7 @@
                     {% endif %}
                     <td>
                         <a href="{% url 'tasks:edit-task' task.id %}">Edit</a>
-                        <a href="#">Attachments</a>
+                        <a href="{% url 'tasks:attachments' task.id %}">Attachments</a>
                         <a href="{% url 'tasks:delete-task' task.id %}">Delete</a>
                     </td>
                 </tr>
