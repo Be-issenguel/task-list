@@ -10,8 +10,9 @@ from apps.tasks.models import Task
 # Tasks views.
 class IndexView(View):
     def get(self, request):
+        tasks = Task.objects.filter(user__id=request.user.id)
         ctx = {
-            'tasks': Task.objects.all()
+            'tasks': tasks
         }
         return render(request, 'frontend/index.html', context=ctx)
 
