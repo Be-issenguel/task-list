@@ -139,3 +139,8 @@ def update_task(request, id):
             'id': task.id,
         }
         return render(request, 'frontend/edit-task.html', context=ctx)
+
+
+def delete_task(request, id):
+    Task.objects.get(pk=id).delete()
+    return redirect('/')
