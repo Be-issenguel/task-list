@@ -12,4 +12,4 @@ class UserForm(ModelForm):
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'description', 'limit_date', 'priority', 'is_finished']
+        exclude = ['user']

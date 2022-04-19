@@ -20,7 +20,11 @@
                     <td>{{ task.description }}</td>
                     <td>{{ task.limit_date }}</td>
                     <td>{{ task.priority }}</td>
-                    <td>{{ task.is_fished }}</td>
+                    {% if task.is_finished %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
                     <td>
                         <a href="#">Edit</a>
                         <a href="#">Attachments</a>

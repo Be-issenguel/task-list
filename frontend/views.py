@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
@@ -81,6 +82,28 @@ def update_profile(request, id):
 
 class NewTaskView(View):
     def get(self, request):
+        ctx = {
+            'form': TaskForm()
+        }
+        return render(request, 'frontend/new-task.html', context=ctx)
+
+
+@login_required
+def store_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid:
+            task = form.save(commit=False)
+            task.user_id = request.user.id
+            task.save()
+            return redirect('/')
+        else:
+            ctx = {
+                'form': form,
+                'errors': form.errors,
+            }
+            return render(request, 'frontend/new-task.html', context=ctx)
+    else:
         ctx = {
             'form': TaskForm()
         }
