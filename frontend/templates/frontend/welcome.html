@@ -1,7 +1,11 @@
 {% extends 'layouts/app.html' %}
 {% block section %}
-    <a href="{% url 'tasks:login' %}">Login</a>
-    <a href="{% url 'tasks:new-account' %}">Register</a>
+    {% if user.is_authenticated  %}
+        <a href="{% url 'tasks:index' %}">Go To Tasks</a>
+    {% else %}
+        <a href="{% url 'tasks:login' %}">Login</a>
+        <a href="{% url 'tasks:new-account' %}">Register</a>
+    {% endif %}
     <h1>Welcome to</h1>
     <h2>Task Management</h2>
 {% endblock %}
