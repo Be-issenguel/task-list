@@ -101,7 +101,7 @@ def store_task(request):
             task = form.save(commit=False)
             task.user_id = request.user.id
             task.save()
-            return redirect('/')
+            return redirect('/tasks/index/')
         else:
             ctx = {
                 'form': form,
@@ -132,7 +132,7 @@ def update_task(request, id):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/tasks/index/')
         else:
             ctx = {
                 'form': form,
@@ -150,7 +150,7 @@ def update_task(request, id):
 @login_required()
 def delete_task(request, id):
     Task.objects.get(pk=id).delete()
-    return redirect('/')
+    return redirect('/tasks/index/')
 
 
 @login_required()
