@@ -7,17 +7,20 @@ from django.contrib.auth.models import User
 from apps.tasks.models import Task, Attachment
 
 
-# Tasks views.
-class IndexView(View):
+class WelcomeView(View):
     def get(self, request):
-        tasks = Task.objects.filter(user__id=request.user.id)
-        ctx = {
-            'tasks': tasks
-        }
-        return render(request, 'frontend/index.html', context=ctx)
+        return render(request, 'frontend/welcome.html')
 
 
-# Accounts views
+@login_required()
+def index(request):
+    tasks = Task.objects.filter(user__id=request.user.id)
+    ctx = {
+        'tasks': tasks
+    }
+    return render(request, 'frontend/index.html', context=ctx)
+
+
 class CreateAccountView(View):
     def get(self, request):
         ctx = {
@@ -31,7 +34,7 @@ def register_user(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/accounts/login/')
         else:
             ctx = {
                 'form': UserCreationForm(),
@@ -45,21 +48,22 @@ def register_user(request):
         return render(request, 'registration/new.html', context=ctx)
 
 
-class ProfileView(View):
-    def get(self, request):
-        return render(request, 'registration/profile.html')
+@login_required()
+def profile(request):
+    return render(request, 'registration/profile.html')
 
 
-class EditProfileView(View):
-    def get(self, request, id):
-        user = get_object_or_404(User, pk=id)
-        ctx = {
-            'form': UserForm(instance=user),
-            'id': id,
-        }
-        return render(request, 'registration/edit.html', context=ctx)
+@login_required()
+def edit_profile(request, id):
+    user = get_object_or_404(User, pk=id)
+    ctx = {
+        'form': UserForm(instance=user),
+        'id': id,
+    }
+    return render(request, 'registration/edit.html', context=ctx)
 
 
+@login_required()
 def update_profile(request, id):
     user = get_object_or_404(User, pk=id)
     if request.method == 'POST':
@@ -81,12 +85,12 @@ def update_profile(request, id):
         return render(request, 'registration/edit.html', context=ctx)
 
 
-class NewTaskView(View):
-    def get(self, request):
-        ctx = {
-            'form': TaskForm()
-        }
-        return render(request, 'frontend/new-task.html', context=ctx)
+@login_required()
+def new_task(request):
+    ctx = {
+        'form': TaskForm()
+    }
+    return render(request, 'frontend/new-task.html', context=ctx)
 
 
 @login_required
@@ -111,16 +115,17 @@ def store_task(request):
         return render(request, 'frontend/new-task.html', context=ctx)
 
 
-class EditTaskView(View):
-    def get(self, request, id):
-        task = get_object_or_404(Task, pk=id)
-        ctx = {
-            'form': TaskForm(instance=task),
-            'id': task.id,
-        }
-        return render(request, 'frontend/edit-task.html', context=ctx)
+@login_required()
+def edit_task(request, id):
+    task = get_object_or_404(Task, pk=id)
+    ctx = {
+        'form': TaskForm(instance=task),
+        'id': task.id,
+    }
+    return render(request, 'frontend/edit-task.html', context=ctx)
 
 
+@login_required()
 def update_task(request, id):
     task = get_object_or_404(Task, pk=id)
     if request.method == 'POST':
@@ -142,29 +147,31 @@ def update_task(request, id):
         return render(request, 'frontend/edit-task.html', context=ctx)
 
 
+@login_required()
 def delete_task(request, id):
     Task.objects.get(pk=id).delete()
     return redirect('/')
 
 
-class IndexAttachmentView(View):
-    def get(self, request, id):
-        ctx = {
-            'attachments': Attachment.objects.filter(task__id=id),
-            'id': id
-        }
-        return render(request, 'frontend/attachments.html', context=ctx)
+@login_required()
+def attachments(request, id):
+    ctx = {
+        'attachments': Attachment.objects.filter(task__id=id),
+        'id': id
+    }
+    return render(request, 'frontend/attachments.html', context=ctx)
 
 
-class NewAttachmentView(View):
-    def get(self, request, id):
-        ctx = {
-            'form': AttachmentForm,
-            'id': id,
-        }
-        return render(request, 'frontend/new-attachment.html', context=ctx)
+@login_required()
+def new_attachment(request, id):
+    ctx = {
+        'form': AttachmentForm,
+        'id': id,
+    }
+    return render(request, 'frontend/new-attachment.html', context=ctx)
 
 
+@login_required()
 def store_attachment(request, id):
     if request.method == 'POST':
         form = AttachmentForm(request.POST, request.FILES)
@@ -187,6 +194,7 @@ def store_attachment(request, id):
         return render(request, 'frontend/attachments.html', context=ctx)
 
 
+@login_required()
 def delete_attachment(request, id):
     attachment = Attachment.objects.filter(pk=id).get()
     task_id = attachment.task_id

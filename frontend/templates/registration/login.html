@@ -4,5 +4,6 @@
         {% csrf_token %}
         {{ form }}
         <input type="submit", value="Login">
+        <a href="{% url 'tasks:create-account' %}">Create Account</a>
     </form>
 {% endblock %}

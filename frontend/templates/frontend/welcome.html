@@ -1,0 +1,7 @@
+{% extends 'layouts/app.html' %}
+{% block section %}
+    <a href="{% url 'tasks:login' %}">Login</a>
+    <a href="{% url 'tasks:new-account' %}">Register</a>
+    <h1>Welcome to</h1>
+    <h2>Task Management</h2>
+{% endblock %}
