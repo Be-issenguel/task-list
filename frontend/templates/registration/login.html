@@ -1,9 +1,17 @@
 {% extends 'layouts/base.html' %}
 {% block section%}
-    <form action="{% url 'tasks:login' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit", value="Login">
-        <a href="{% url 'tasks:create-account' %}">Create Account</a>
-    </form>
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="margin-top:3%">
+        <h1 class="alert alert-info text-center">Login</h1>
+        <form action="{% url 'tasks:login' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Login" class="btn btn-primary">
+            <div class="pull-right">
+                <a href="#" class="btn btn-warning">Forgot Password?</a>
+                <a href="{% url 'tasks:create-account' %}" class="btn btn-warning">Create Account</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}
