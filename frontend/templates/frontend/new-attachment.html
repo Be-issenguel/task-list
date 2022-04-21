@@ -2,9 +2,9 @@
 {% block section %}
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <h1 class="alert alert-info text-center">New Attachment Form</h1>
-        <a href="{% url 'tasks:attachments' id %}" class="btn btn-info pull-right"> < Back To Attachments</a><br><br>
-        <form action="{% url 'tasks:store-attachment' id %}" method="post" enctype="multipart/form-data">
+        <h1 class="alert alert-info text-center">New Attachment For: {{ task.name }} Task</h1>
+        <a href="{% url 'tasks:attachments' task.id %}" class="btn btn-info pull-right"> < Back To Attachments</a><br><br>
+        <form action="{% url 'tasks:store-attachment' task.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
             <br>

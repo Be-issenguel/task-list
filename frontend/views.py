@@ -157,7 +157,7 @@ def delete_task(request, id):
 def attachments(request, id):
     ctx = {
         'attachments': Attachment.objects.filter(task__id=id),
-        'id': id
+        'task': get_object_or_404(Task, pk=id)
     }
     return render(request, 'frontend/attachments.html', context=ctx)
 
@@ -166,7 +166,7 @@ def attachments(request, id):
 def new_attachment(request, id):
     ctx = {
         'form': AttachmentForm,
-        'id': id,
+        'task': get_object_or_404(Task, pk=id),
     }
     return render(request, 'frontend/new-attachment.html', context=ctx)
 

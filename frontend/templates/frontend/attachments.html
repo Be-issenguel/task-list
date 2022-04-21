@@ -1,27 +1,29 @@
 {% extends 'layouts/base.html' %}
 {% block section %}
-    <h1>Attachment List</h1>
-    <a href="{% url 'tasks:new-attachment' id %}">New Attachment</a>
-    <a href="{% url 'tasks:index' %}">Back To Tasks</a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Path</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for attachment in attachments %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1>{{ task.name }} Attachments</h1>
+        <a href="{% url 'tasks:new-attachment' task.id %}" class="btn btn-info pull-right">+ New Attachment</a>
+        <table class="table table-responsive">
+            <thead>
                 <tr>
-                    <td>{{ attachment.name }}</td>
-                    <td>{{ attachment.file }}</td>
-                    <td>
-                        <a href="#">Edit</a>
-                        <a href="{% url 'tasks:delete-attachment' attachment.id %}">Delete</a>
-                    </td>
+                    <th>Name</th>
+                    <th>Path</th>
+                    <th>Options</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for attachment in attachments %}
+                    <tr>
+                        <td>{{ attachment.name }}</td>
+                        <td>{{ attachment.file }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{% url 'tasks:delete-attachment' attachment.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
