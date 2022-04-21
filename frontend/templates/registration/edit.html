@@ -1,8 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% block section %}
-    <form action="{% url 'tasks:update-profile' id %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input  type="submit" value="Update">
-    </form>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="alert alert-info text-center">Update Profile</h1>
+        <form action="{% url 'tasks:update-profile' id %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input  type="submit" value="Update" class="btn btn-success pull-right">
+        </form>
+    </div>
 {% endblock %}
