@@ -10,6 +10,13 @@ class UserForm(ModelForm):
 
 
 class TaskForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['description'].widget.attrs.update({'class': 'form-control', 'rows': 5})
+        self.fields['limit_date'].widget.attrs.update({'class': 'form-control'})
+        self.fields['priority'].widget.attrs.update({'class': 'form-control'})
+
     class Meta:
         model = Task
         exclude = ['user']
