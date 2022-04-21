@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 app_name = 'tasks'
 urlpatterns = [
@@ -14,6 +14,10 @@ urlpatterns = [
     path('<int:id>/accounts/edit/', views.edit_profile, name='edit-profile'),
     path('<int:id>/accounts/update', views.update_profile, name='update-profile'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='/accounts/login/'), name='logout'),
+    path('accounts/change-password/', auth_views.PasswordChangeView.as_view(template_name='registration/change'
+                                                                                          '-password.html'),
+         name='password-change'),
+    path('accounts/password-change-done',auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
     path('tasks/index/', views.index, name='index'),
     path('tasks/new/', views.new_task, name='new-task'),
     path('tasks/store/', views.store_task, name='store-task'),
