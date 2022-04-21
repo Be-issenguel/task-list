@@ -1,6 +1,5 @@
-{% extends 'layouts/app.html' %}
+{% extends 'layouts/base.html' %}
 {% block section %}
-
     <div class="jumbotron text-center bg-primary">
         <h2>Welcome</h2>
         <h3>to</h3>
@@ -8,26 +7,23 @@
     </div>
     <h1 class="text-center">Features</h1>
     <div class="container mt-4">
-        <div class="row content">
-            <div class="col-md-4 text-center">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Users</div>
-                    <div class="panel-body">Tasks Owners</div>
-                </div>
+        <div class="col-md-4 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Users</div>
+                <div class="panel-body">Tasks Owners</div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="panel panel-success">
-                    <div class="panel-heading">Tasks</div>
-                    <div class="panel-body">Users Tasks</div>
-                </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="panel panel-success">
+                <div class="panel-heading">Tasks</div>
+                <div class="panel-body">Users Tasks</div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="panel panel-info">
-                    <div class="panel-heading">Attachments</div>
-                    <div class="panel-body">Tasks Attachments</div>
-                </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="panel panel-info">
+                <div class="panel-heading">Attachments</div>
+                <div class="panel-body">Tasks Attachments</div>
             </div>
-
         </div>
     </div>
 {% endblock %}

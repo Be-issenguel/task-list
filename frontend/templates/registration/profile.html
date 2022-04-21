@@ -1,10 +1,21 @@
 {% extends 'layouts/base.html' %}
 {% block section %}
-    <h1>User Profile</h1>
-    <p>{{ user.username }}</p>
-    <p>{{ user.email }}</p>
-    <p>{{ user.first_name }}</p>
-    <p>{{ user.last_name }}</p>
-    <a href="{% url 'tasks:edit-profile' user.id %}">Edit Profile</a>
-    <a href="{% url 'tasks:index' %}">Go To Task List</a>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="panel panel-success">
+            <div class="panel-heading text-center">
+                <h1>User Profile</h1>
+            </div>
+            <div class="panel-body">
+                <h4><strong>Username:</strong> {{ user.username }}</h4>
+                <h4><strong>Email:</strong> {{ user.email }}</h4>
+                <h4><strong>First Name:</strong> {{ user.first_name }}</h4>
+                <h4><strong>Last Name:</strong> {{ user.last_name }}</h4>
+                <div class="pull-right">
+                    <a href="{% url 'tasks:edit-profile' user.id %}" class="btn btn-warning">Edit Profile</a>
+                    <a href="#" class="btn btn-danger">Change Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

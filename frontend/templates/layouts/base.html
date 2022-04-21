@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <style>
             .row.content{
-                height:254px;
+                height:670px;
             }
 
             footer{
@@ -22,14 +22,20 @@
                 }
             }
 
+            body{
+                overflow-x: hidden
+            }
+
     </style>
 </header>
-    <body style="overflow:auto">
-        <div class="container-fluid">
+    <body>
+        <div class="row content">
+            <div class="container-fluid">
             <nav class="navbar navbar-inverse" style="margin-top:10px">
                 <div class="navbar-brand">Task Management</div>
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'tasks:welcome' %}">Welcome</a></li>
                     <li><a href="{% url 'tasks:index' %}">Tasks</a></li>
                     <li><a href="{% url 'tasks:profile' %}">Profile</a></li>
                     <li><a href="{% url 'tasks:logout' %}">Logout</a></li>
@@ -40,6 +46,7 @@
                 </ul>
             </nav>
             {% block section %}{% endblock %}
+        </div>
         </div>
         <footer class="container-fluid text-center mt-4">
             <p><strong>Powered by @Bernardo Issenguel</strong></p>
