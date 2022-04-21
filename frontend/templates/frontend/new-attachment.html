@@ -1,10 +1,14 @@
 {% extends 'layouts/base.html' %}
 {% block section %}
-    <h1>New Attachment Form</h1>
-    <a href="{% url 'tasks:attachments' id %}">Back To Attachments</a>
-    <form action="{% url 'tasks:store-attachment' id %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Save">
-    </form>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="alert alert-info text-center">New Attachment Form</h1>
+        <a href="{% url 'tasks:attachments' id %}" class="btn btn-info pull-right"> < Back To Attachments</a><br><br>
+        <form action="{% url 'tasks:store-attachment' id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Save" class="btn btn-success pull-right">
+        </form>
+    </div>
 {% endblock %}
