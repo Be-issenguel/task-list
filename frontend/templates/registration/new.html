@@ -1,4 +1,4 @@
-{% extends 'layouts/app.html' %}
+{% extends 'layouts/base.html' %}
 {% block section %}
     <form action="{% url 'tasks:create-account' %}" method="post">
         {% csrf_token %}
