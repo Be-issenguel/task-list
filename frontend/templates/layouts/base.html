@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <style>
             .row.content{
-                height:675px;
+                height:720px;
             }
 
             footer{
@@ -26,6 +26,20 @@
                 overflow-x: hidden
             }
 
+            .errorlist{
+                list-style:none;
+            }
+
+            .errorlist li{
+                color: #a94442;
+            }
+
+            .helptext{
+                color: #8a6d3b;
+                display: flex;
+            }
+
+
     </style>
 </header>
     <body>
@@ -35,11 +49,11 @@
                 <div class="navbar-brand">Task Management</div>
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'tasks:welcome' %}">Welcome</a></li>
                     <li><a href="{% url 'tasks:index' %}">Tasks</a></li>
                     <li><a href="{% url 'tasks:profile' %}">Profile</a></li>
                     <li><a href="{% url 'tasks:logout' %}">Logout</a></li>
                     {% else %}
+                    <li><a href="{% url 'tasks:welcome' %}">Welcome</a></li>
                     <li><a href="{% url 'tasks:login' %}">Login</a></li>
                     <li><a href="{% url 'tasks:new-account' %}">Register</a></li>
                     {% endif %}
