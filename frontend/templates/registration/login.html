@@ -9,7 +9,7 @@
             <br>
             <input type="submit" value="Login" class="btn btn-primary">
             <div class="pull-right">
-                <a href="#" class="btn btn-warning">Forgot Password?</a>
+                <a href="{% url 'tasks:password_reset' %}" class="btn btn-warning">Forgot Password?</a>
                 <a href="{% url 'tasks:create-account' %}" class="btn btn-warning">Create Account</a>
             </div>
         </form>
