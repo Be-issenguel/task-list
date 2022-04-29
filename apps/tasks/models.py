@@ -16,4 +16,4 @@ class Task(models.Model):
 class Attachment(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='attachment name')
-    file = models.FileField(upload_to=MEDIA_ROOT, verbose_name='attachment file')
+    file = models.FileField(upload_to='', verbose_name='attachment file')
