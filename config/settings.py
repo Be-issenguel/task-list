@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '.media/attachments')
-MEDIA_URL = '/media/a   ttachments/'
+MEDIA_URL = 'media/attachments/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
