@@ -49,6 +49,7 @@
                 <div class="navbar-brand">Task Management</div>
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
+                    <li><a href="#">User: {{ user.username }}</a></li>
                     <li><a href="{% url 'tasks:index' %}">Tasks</a></li>
                     <li><a href="{% url 'tasks:profile' %}">Profile</a></li>
                     <li><a href="{% url 'tasks:logout' %}">Logout</a></li>
